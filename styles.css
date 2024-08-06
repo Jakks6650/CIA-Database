@@ -14,11 +14,37 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #111;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .logo {
     width: 200px;
     height: auto;
+    margin-bottom: 20px;
+}
+
+#password {
+    margin-bottom: 10px;
+    padding: 15px;
+    width: 250px;
+    border: 2px solid #444;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+}
+
+button {
+    padding: 15px;
+    width: 250px;
+    border: none;
+    border-radius: 5px;
+    background-color: #444;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 #admin-screen {
@@ -32,6 +58,10 @@ body {
     margin-bottom: 20px;
     padding: 10px;
     width: 80%;
+    background-color: #333;
+    border: 2px solid #444;
+    border-radius: 5px;
+    color: white;
 }
 
 #case-list {
@@ -59,18 +89,14 @@ body {
     margin: 5px 0;
     padding: 10px;
     width: 100%;
+    background-color: #333;
+    border: 2px solid #444;
+    border-radius: 5px;
+    color: white;
 }
 
 #add-edit-case button {
     margin-top: 10px;
-    padding: 10px;
-    background-color: #444;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button {
     padding: 10px;
     background-color: #444;
     color: white;
