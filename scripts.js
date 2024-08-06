@@ -2,7 +2,7 @@ let cases = [];
 let editingCase = null;
 
 async function login() {
-    const password = document.getElementById('password').value;
+    const password = document.getElementById('8675309').value;
     if (password === 'yourpassword') { // Replace 'yourpassword' with your actual password
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('admin-screen').style.display = 'block';
