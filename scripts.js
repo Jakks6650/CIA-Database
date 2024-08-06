@@ -2,8 +2,8 @@ let cases = [];
 let editingCase = null;
 
 async function login() {
-    const password = document.getElementById('8675309').value;
-    if (password === 'yourpassword') { // Replace 'yourpassword' with your actual password
+    const password = document.getElementById('password').value;
+    if (password === '8675309') { // Replace 'yourpassword' with your desired password
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('admin-screen').style.display = 'block';
         await fetchCases();
@@ -14,8 +14,13 @@ async function login() {
 }
 
 async function fetchCases() {
-    const response = await fetch('cases.json');
-    cases = await response.json();
+    try {
+        const response = await fetch('cases.json');
+        cases = await response.json();
+    } catch (error) {
+        console.error('Error fetching cases:', error);
+        cases = [];
+    }
 }
 
 function displayCases() {
@@ -76,11 +81,15 @@ function commitCase() {
 }
 
 async function saveCases() {
-    await fetch('cases.json', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(cases)
-    });
+    try {
+        await fetch('cases.json', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(cases)
+        });
+    } catch (error) {
+        console.error('Error saving cases:', error);
+    }
 }
