@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Logs</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="login-screen">
+        <img src="https://media.discordapp.net/attachments/1264789323102949469/1264790839423406110/IMG_5347.png?ex=66b24582&is=66b0f402&hm=b33ee0408642058416efcb5ed5e0d15a224e1089eef6d473cd2cc07b07bcca28&=&format=webp&quality=lossless&width=461&height=577" alt="Logo" class="logo">
+        <input type="password" id="password" placeholder="Enter Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <div id="admin-screen" style="display:none;">
+        <input type="text" id="search" placeholder="Search for a case..." oninput="filterCases()">
+        <div id="case-list"></div>
+        <button onclick="showAddCase()">Add Case</button>
+        <div id="add-edit-case" style="display:none;">
+            <input type="text" id="case-title" placeholder="Case Title">
+            <input type="text" id="case-number" placeholder="Case Number">
+            <input type="text" id="members-involved" placeholder="Members Involved">
+            <textarea id="case-description" placeholder="Case Description"></textarea>
+            <button onclick="commitCase()">Commit</button>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
