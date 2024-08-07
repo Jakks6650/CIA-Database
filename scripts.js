@@ -50,17 +50,55 @@ function filterCases() {
 }
 
 function showCaseDetails(index) {
+    editingCase = index;
     const caseLog = cases[index];
-    alert(`Title: ${caseLog.title}\nNumber: ${caseLog.number}\nMembers Involved: ${caseLog.members}\nDescription: ${caseLog.description}`);
+    const modal = document.getElementById('caseModal');
+    const modalBody = document.getElementById('modal-body');
+
+    modalBody.innerHTML = `
+        <h2>Case Details</h2>
+        <p><strong>Title:</strong> ${caseLog.title}</p>
+        <p><strong>Number:</strong> ${caseLog.number}</p>
+        <p><strong>Members Involved:</strong> ${caseLog.members}</p>
+        <p><strong>Description:</strong> ${caseLog.description}</p>
+        <button onclick="showEditCase(${index})">Edit Case</button>
+    `;
+
+    modal.style.display = "flex";
 }
 
 function showAddCase() {
     editingCase = null;
-    document.getElementById('case-title').value = '';
-    document.getElementById('case-number').value = '';
-    document.getElementById('members-involved').value = '';
-    document.getElementById('case-description').value = '';
-    document.getElementById('add-edit-case').style.display = 'block';
+    const modal = document.getElementById('caseModal');
+    const modalBody = document.getElementById('modal-body');
+
+    modalBody.innerHTML = `
+        <h2>Add Case</h2>
+        <input type="text" id="case-title" placeholder="Case Title">
+        <input type="text" id="case-number" placeholder="Case Number">
+        <input type="text" id="members-involved" placeholder="Members Involved">
+        <textarea id="case-description" placeholder="Case Description"></textarea>
+        <button onclick="commitCase()">Commit</button>
+    `;
+
+    modal.style.display = "flex";
+}
+
+function showEditCase(index) {
+    const caseLog = cases[index];
+    const modal = document.getElementById('caseModal');
+    const modalBody = document.getElementById('modal-body');
+
+    modalBody.innerHTML = `
+        <h2>Edit Case</h2>
+        <input type="text" id="case-title" placeholder="Case Title" value="${caseLog.title}">
+        <input type="text" id="case-number" placeholder="Case Number" value="${caseLog.number}">
+        <input type="text" id="members-involved" placeholder="Members Involved" value="${caseLog.members}">
+        <textarea id="case-description" placeholder="Case Description">${caseLog.description}</textarea>
+        <button onclick="commitCase()">Commit</button>
+    `;
+
+    modal.style.display = "flex";
 }
 
 function commitCase() {
@@ -77,7 +115,7 @@ function commitCase() {
 
     saveCases();
     displayCases();
-    document.getElementById('add-edit-case').style.display = 'none';
+    closeModal();
 }
 
 async function saveCases() {
@@ -92,4 +130,8 @@ async function saveCases() {
     } catch (error) {
         console.error('Error saving cases:', error);
     }
+}
+
+function closeModal() {
+    document.getElementById('caseModal').style.display = 'none';
 }
