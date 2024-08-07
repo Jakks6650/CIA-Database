@@ -3,7 +3,7 @@ let editingCase = null;
 
 async function login() {
     const password = document.getElementById('password').value;
-    if (password === '8675309') { // Replace 'yourpassword' with your desired password
+    if (password === 'yourpassword') { // Replace 'yourpassword' with your desired password
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('admin-screen').style.display = 'block';
         await fetchCases();
