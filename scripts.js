@@ -3,7 +3,7 @@ let editingCase = null;
 
 async function login() {
     const password = document.getElementById('password').value;
-    if (password === 'yourpassword') { // Replace 'yourpassword' with your desired password
+    if (password === '8675309') { // Replace 'yourpassword' with your desired password
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('admin-screen').style.display = 'block';
         await fetchCases();
@@ -49,29 +49,11 @@ function filterCases() {
     });
 }
 
-function showCaseDetails(index) {
-    editingCase = index;
-    const caseLog = cases[index];
-    const modal = document.getElementById('caseModal');
-    const modalBody = document.getElementById('modal-body');
-
-    modalBody.innerHTML = `
-        <h2>Case Details</h2>
-        <p><strong>Title:</strong> ${caseLog.title}</p>
-        <p><strong>Number:</strong> ${caseLog.number}</p>
-        <p><strong>Members Involved:</strong> ${caseLog.members}</p>
-        <p><strong>Description:</strong> ${caseLog.description}</p>
-        <button onclick="showEditCase(${index})">Edit Case</button>
-    `;
-
-    modal.style.display = "flex";
-}
-
 function showAddCase() {
     editingCase = null;
     const modal = document.getElementById('caseModal');
     const modalBody = document.getElementById('modal-body');
-
+    
     modalBody.innerHTML = `
         <h2>Add Case</h2>
         <input type="text" id="case-title" placeholder="Case Title">
@@ -80,24 +62,40 @@ function showAddCase() {
         <textarea id="case-description" placeholder="Case Description"></textarea>
         <button onclick="commitCase()">Commit</button>
     `;
-
+    
     modal.style.display = "flex";
 }
 
-function showEditCase(index) {
+function showEditCase() {
+    const modal = document.getElementById('caseModal');
+    const modalBody = document.getElementById('modal-body');
+    
+    modalBody.innerHTML = `
+        <h2>Edit Case</h2>
+        <input type="text" id="case-title" placeholder="Case Title">
+        <input type="text" id="case-number" placeholder="Case Number">
+        <input type="text" id="members-involved" placeholder="Members Involved">
+        <textarea id="case-description" placeholder="Case Description"></textarea>
+        <button onclick="commitCase()">Commit</button>
+    `;
+    
+    modal.style.display = "flex";
+}
+
+function showCaseDetails(index) {
     const caseLog = cases[index];
     const modal = document.getElementById('caseModal');
     const modalBody = document.getElementById('modal-body');
-
+    
     modalBody.innerHTML = `
-        <h2>Edit Case</h2>
-        <input type="text" id="case-title" placeholder="Case Title" value="${caseLog.title}">
-        <input type="text" id="case-number" placeholder="Case Number" value="${caseLog.number}">
-        <input type="text" id="members-involved" placeholder="Members Involved" value="${caseLog.members}">
-        <textarea id="case-description" placeholder="Case Description">${caseLog.description}</textarea>
-        <button onclick="commitCase()">Commit</button>
+        <h2>Case Details</h2>
+        <p><strong>Case Title:</strong> ${caseLog.title}</p>
+        <p><strong>Case Number:</strong> ${caseLog.number}</p>
+        <p><strong>Members Involved:</strong> ${caseLog.members}</p>
+        <p><strong>Case Description:</strong> ${caseLog.description}</p>
+        <button onclick="closeModal()">Close</button>
     `;
-
+    
     modal.style.display = "flex";
 }
 
@@ -106,13 +104,13 @@ function commitCase() {
     const number = document.getElementById('case-number').value;
     const members = document.getElementById('members-involved').value;
     const description = document.getElementById('case-description').value;
-
+    
     if (editingCase !== null) {
         cases[editingCase] = { title, number, members, description };
     } else {
         cases.push({ title, number, members, description });
     }
-
+    
     saveCases();
     displayCases();
     closeModal();
@@ -134,4 +132,9 @@ async function saveCases() {
 
 function closeModal() {
     document.getElementById('caseModal').style.display = 'none';
+}
+
+function viewPersonnel() {
+    // Implement view personnel logic here
+    alert('View Personnel clicked');
 }
