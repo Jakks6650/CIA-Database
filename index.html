@@ -17,12 +17,15 @@
         <input type="text" id="search" placeholder="Search for a case..." oninput="filterCases()">
         <div id="case-list"></div>
         <button onclick="showAddCase()">Add Case</button>
-        <div id="add-edit-case" style="display:none;">
-            <input type="text" id="case-title" placeholder="Case Title">
-            <input type="text" id="case-number" placeholder="Case Number">
-            <input type="text" id="members-involved" placeholder="Members Involved">
-            <textarea id="case-description" placeholder="Case Description"></textarea>
-            <button onclick="commitCase()">Commit</button>
+    </div>
+
+    <!-- The Modal -->
+    <div id="caseModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modal-body">
+                <!-- Case details or form for editing/adding -->
+            </div>
         </div>
     </div>
 
