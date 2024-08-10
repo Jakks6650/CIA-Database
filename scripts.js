@@ -1,7 +1,7 @@
 let cases = [];
 let personnel = [];
-let loginCode = '8675309'; // Default login code
-let overseerCode = '8675309'; // Default overseer code
+let loginCode = 'yourpassword'; // Default login code
+let overseerCode = 'overseerpassword'; // Default overseer code
 let editingCase = null;
 let isOverseer = false;
 
@@ -26,6 +26,8 @@ function showAdminScreen() {
 
     if (isOverseer) {
         document.getElementById('overseer-controls').style.display = 'block';
+    } else {
+        document.getElementById('overseer-controls').style.display = 'none';
     }
 
     fetchCases();
@@ -217,4 +219,12 @@ function changeLoginCode() {
         closeModal();
         alert('Login code changed successfully.');
     }
+}
+
+function showOverseerControls() {
+    document.getElementById('overseer-controls').style.display = 'block';
+}
+
+function hideOverseerControls() {
+    document.getElementById('overseer-controls').style.display = 'none';
 }
