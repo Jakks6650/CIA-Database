@@ -20,7 +20,7 @@
                 <button onclick="showAddCase()">Add Log</button>
                 <button onclick="showEditCase()">Edit Log</button>
                 <button onclick="viewPersonnel()">View Personnel</button>
-                <button onclick="showOverseerControls()">Overseer Control</button>
+                <a href="overseer.html"><button>Overseer Control</button></a>
             </div>
         </div>
 
@@ -31,15 +31,6 @@
 
     <div id="caseModal" class="modal" style="display: none;">
         <div id="modal-body" class="modal-content"></div>
-    </div>
-
-    <div id="overseer-controls" class="modal" style="display: none;">
-        <div class="modal-content">
-            <button onclick="showChangeLoginCode()">Change Login Code</button>
-            <button onclick="addPersonnel()">Add Personnel</button>
-            <button onclick="removePersonnel()">Remove Personnel</button>
-            <button onclick="deleteCase()">Delete Case</button>
-        </div>
     </div>
 
     <script src="scripts.js"></script>
