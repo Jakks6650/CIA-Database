@@ -22,7 +22,6 @@ function overseerLogin() {
     if (password === overseerPassword) {
         document.getElementById('overseer-login').style.display = 'none';
         document.getElementById('overseer-controls').style.display = 'block';
-        document.getElementById('top-bar').style.display = 'flex';
     } else {
         alert("Invalid overseer password!");
     }
@@ -131,4 +130,17 @@ function viewCase(index) {
 
 function closeModal() {
     document.getElementById('caseModal').style.display = 'none';
+}
+
+function filterCases() {
+    const search = document.getElementById('search').value.toLowerCase();
+    const caseItems = document.querySelectorAll('.case-item');
+    caseItems.forEach(item => {
+        const caseText = item.textContent.toLowerCase();
+        if (caseText.includes(search)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
 }
