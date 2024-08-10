@@ -55,6 +55,7 @@ body {
 .button-group {
     display: flex;
     justify-content: space-between;
+    padding: 10px;
 }
 
 .button-group button {
