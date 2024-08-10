@@ -1,5 +1,5 @@
-let loginPassword = "123456"; // Default password
-let overseerPassword = "234567"; // Default overseer password
+let loginPassword = "admin123"; // Default password
+let overseerPassword = "overseer456"; // Default overseer password
 
 function login() {
     const password = document.getElementById('password').value;
@@ -24,23 +24,19 @@ function overseerLogin() {
 }
 
 function loadCases() {
-    // Load case data from storage
+    // Populate the case list from stored data
 }
 
 function showAddCase() {
-    // Logic to show Add Case form
+    // Display the add case form
 }
 
 function showEditCase() {
-    // Logic to show Edit Case form
+    // Display the edit case form
 }
 
 function viewPersonnel() {
-    // Logic to show personnel details
-}
-
-function showOverseerControls() {
-    window.location.href = "overseer.html"; // Redirect to overseer controls page
+    // Display personnel information
 }
 
 function changeLoginCode() {
