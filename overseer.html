@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overseer Control</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="overseer-login">
+        <img src="path/to/cia_logo.png" alt="CIA Logo" class="center-logo">
+        <input type="password" id="overseer-password" placeholder="Enter Overseer Password">
+        <button onclick="overseerLogin()">Login</button>
+    </div>
+
+    <div id="overseer-controls" style="display: none;">
+        <div id="top-bar">
+            <img src="path/to/cia_logo.png" alt="CIA Logo" class="logo">
+            <div class="button-group">
+                <button onclick="changeLoginCode()">Change Login Code</button>
+                <button onclick="addPersonnel()">Add Personnel</button>
+                <button onclick="removePersonnel()">Remove Personnel</button>
+                <button onclick="deleteCase()">Delete Case</button>
+            </div>
+        </div>
+        <div id="control-panel">
+            <!-- Content for Overseer controls -->
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
