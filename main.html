@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIA Case Management</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .top-bar {
+            background-color: #222;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cia-logo {
+            width: 100px;
+        }
+        .menu-buttons button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .case-search {
+            margin: 20px;
+            text-align: center;
+        }
+        .case-search input {
+            padding: 10px;
+            width: 300px;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+        }
+        .case-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .case-item {
+            background-color: #333;
+            padding: 15px;
+            margin: 10px;
+            width: 200px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <img src="assets/cia-logo.png" alt="CIA Logo" class="cia-logo">
+        <div class="menu-buttons">
+            <button onclick="newCase()">New Case</button>
+            <button onclick="editCase()">Edit Case</button>
+            <button onclick="overseerLogin()">Overseer Login</button>
+        </div>
+    </div>
+
+    <div class="case-search">
+        <input type="text" placeholder="Search by Case Number" id="caseSearch">
+    </div>
+
+    <div class="case-list" id="caseList">
+        <!-- Case items will be generated here dynamically -->
+    </div>
+
+    <div id="popup" style="display:none;">
+        <div id="popup-content">
+            <!-- Popup content for new/edit case will go here -->
+        </div>
+    </div>
+
+    <script>
+        const cases = [
+            {number: '001', title: 'Case 001', agents: 'Agent A, Agent B', details: 'Details of case 001'},
+            // Add more cases here
+        ];
+
+        function renderCases() {
+            const caseList = document.getElementById('caseList');
+            caseList.innerHTML = '';
+            cases.forEach(c => {
+                const caseItem = document.createElement('div');
+                caseItem.className = 'case-item';
+                caseItem.innerHTML = `
+                    <strong>${c.number}</strong><br>
+                    ${c.title}<br>
+                    ${c.agents}
+                `;
+                caseItem.onclick = () => viewCase(c);
+                caseList.appendChild(caseItem);
+            });
+        }
+
+        function newCase() {
+            // Show the new case popup
+        }
+
+        function editCase() {
+            // Show the edit case popup
+        }
+
+        function overseerLogin() {
+            window.location.href = 'overseer.html';
+        }
+
+        function viewCase(caseData) {
+            // Show the case details in a popup
+        }
+
+        renderCases();
+    </script>
+</body>
+</html>
