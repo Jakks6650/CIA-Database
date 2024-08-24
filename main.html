@@ -55,6 +55,34 @@
             border-radius: 5px;
             cursor: pointer;
         }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            display: none;
+        }
+        .popup input, .popup textarea {
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+        .popup button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -68,24 +96,24 @@
     </div>
 
     <div class="case-search">
-        <input type="text" placeholder="Search by Case Number" id="caseSearch">
+        <input type="text" placeholder="Search by Case Number" id="caseSearch" oninput="searchCases()">
     </div>
 
     <div class="case-list" id="caseList">
         <!-- Case items will be generated here dynamically -->
     </div>
 
-    <div id="popup" style="display:none;">
-        <div id="popup-content">
-            <!-- Popup content for new/edit case will go here -->
-        </div>
+    <div id="popup" class="popup">
+        <input type="text" id="caseTitle" placeholder="Case Title">
+        <input type="text" id="caseDate" placeholder="Date">
+        <input type="text" id="caseAgents" placeholder="Agents Involved">
+        <textarea id="caseDetails" placeholder="Case Details"></textarea>
+        <button onclick="saveCase()">Create Case</button>
+        <button onclick="closePopup()">Cancel</button>
     </div>
 
     <script>
-        const cases = [
-            {number: '001', title: 'Case 001', agents: 'Agent A, Agent B', details: 'Details of case 001'},
-            // Add more cases here
-        ];
+        const cases = JSON.parse(localStorage.getItem('cases')) || [];
 
         function renderCases() {
             const caseList = document.getElementById('caseList');
@@ -104,19 +132,79 @@
         }
 
         function newCase() {
-            // Show the new case popup
+            openPopup();
         }
 
         function editCase() {
-            // Show the edit case popup
+            const caseNumber = prompt("Enter Case Number:");
+            const caseToEdit = cases.find(c => c.number === caseNumber);
+            if (caseToEdit) {
+                openPopup(caseToEdit);
+            } else {
+                alert("Case not found!");
+            }
         }
 
         function overseerLogin() {
             window.location.href = 'overseer.html';
         }
 
+        function openPopup(caseData = {}) {
+            document.getElementById('caseTitle').value = caseData.title || '';
+            document.getElementById('caseDate').value = caseData.date || '';
+            document.getElementById('caseAgents').value = caseData.agents || '';
+            document.getElementById('caseDetails').value = caseData.details || '';
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function saveCase() {
+            const title = document.getElementById('caseTitle').value;
+            const date = document.getElementById('caseDate').value;
+            const agents = document.getElementById('caseAgents').value;
+            const details = document.getElementById('caseDetails').value;
+
+            if (title && date && agents && details) {
+                const caseNumber = cases.length ? String(cases.length + 1).padStart(3, '0') : '001';
+                const newCase = { number: caseNumber, title, date, agents, details };
+                cases.push(newCase);
+                localStorage.setItem('cases', JSON.stringify(cases));
+                renderCases();
+                closePopup();
+            } else {
+                alert('All fields must be filled out');
+            }
+        }
+
         function viewCase(caseData) {
-            // Show the case details in a popup
+            alert(`
+                Case Number: ${caseData.number}
+                Title: ${caseData.title}
+                Date: ${caseData.date}
+                Agents: ${caseData.agents}
+                Details: ${caseData.details}
+            `);
+        }
+
+        function searchCases() {
+            const searchTerm = document.getElementById('caseSearch').value.toLowerCase();
+            const filteredCases = cases.filter(c => c.number.toLowerCase().includes(searchTerm));
+            const caseList = document.getElementById('caseList');
+            caseList.innerHTML = '';
+            filteredCases.forEach(c => {
+                const caseItem = document.createElement('div');
+                caseItem.className = 'case-item';
+                caseItem.innerHTML = `
+                    <strong>${c.number}</strong><br>
+                    ${c.title}<br>
+                    ${c.agents}
+                `;
+                caseItem.onclick = () => viewCase(c);
+                caseList.appendChild(caseItem);
+            });
         }
 
         renderCases();
