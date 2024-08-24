@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIA Overseer</title>
+    <title>CIA Overseer Panel</title>
     <style>
-        /* Use the same styles as the main interface */
         body {
             background-color: #000;
             color: #fff;
@@ -30,20 +29,6 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        .case-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px;
-        }
-        .case-item {
-            background-color: #333;
-            padding: 15px;
-            margin: 10px;
-            width: 200px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
@@ -55,23 +40,28 @@
         </div>
     </div>
 
-    <div class="case-list" id="caseList">
-        <!-- Case items will be generated here dynamically -->
-    </div>
-
-    <div id="popup" style="display:none;">
-        <div id="popup-content">
-            <!-- Popup content for delete log or change passcode will go here -->
-        </div>
-    </div>
-
     <script>
         function deleteLog() {
-            // Implement delete log functionality
+            const caseNumber = prompt("Enter Case Number to Delete:");
+            const cases = JSON.parse(localStorage.getItem('cases')) || [];
+            const updatedCases = cases.filter(c => c.number !== caseNumber);
+
+            if (cases.length === updatedCases.length) {
+                alert('Case not found!');
+            } else {
+                localStorage.setItem('cases', JSON.stringify(updatedCases));
+                alert('Case deleted successfully.');
+            }
         }
 
         function changePasscode() {
-            // Implement change passcode functionality
+            const newPasscode = prompt("Enter New Passcode:");
+            if (newPasscode) {
+                localStorage.setItem('overseerPasscode', newPasscode);
+                alert('Passcode changed successfully.');
+            } else {
+                alert('Passcode cannot be empty!');
+            }
         }
     </script>
 </body>
