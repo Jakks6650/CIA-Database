@@ -3,36 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CIA Database</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>CIA Secure Access</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            text-align: center;
+        }
+        .cia-logo {
+            width: 150px;
+        }
+        .passcode-input {
+            margin-top: 20px;
+            padding: 10px;
+            width: 200px;
+            background-color: #333;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div id="login-screen">
-        <img src="https://media.discordapp.net/attachments/1264789323102949469/1264790839423406110/IMG_5347.png?ex=66b24582&is=66b0f402&hm=b33ee0408642058416efcb5ed5e0d15a224e1089eef6d473cd2cc07b07bcca28&=&format=webp&quality=lossless&width=461&height=577" alt="CIA Logo" class="center-logo">
-        <input type="password" id="password" placeholder="Enter Password">
-        <button onclick="login()">Login</button>
+    <div class="login-container">
+        <img src="assets/cia-logo.png" alt="CIA Logo" class="cia-logo">
+        <input type="password" placeholder="Enter Passcode" class="passcode-input" id="passcode">
+        <button onclick="checkPasscode()">Enter</button>
     </div>
+    <script>
+        function checkPasscode() {
+            const passcode = document.getElementById('passcode').value;
+            const correctPasscode = 'your-passcode'; // Replace with the correct passcode
 
-    <div id="admin-screen" style="display: none;">
-        <div id="top-bar">
-            <img src="https://media.discordapp.net/attachments/1264789323102949469/1264790839423406110/IMG_5347.png?ex=66b24582&is=66b0f402&hm=b33ee0408642058416efcb5ed5e0d15a224e1089eef6d473cd2cc07b07bcca28&=&format=webp&quality=lossless&width=461&height=577" alt="CIA Logo" class="logo">
-            <div class="button-group">
-                <button onclick="showAddCase()">Add Log</button>
-                <button onclick="showEditCase()">Edit Log</button>
-                <button onclick="viewPersonnel()">View Personnel</button>
-                <a href="overseer.html"><button>Overseer Control</button></a>
-            </div>
-        </div>
-
-        <input type="text" id="search" placeholder="Search Cases..." oninput="filterCases()">
-
-        <div id="case-list"></div>
-    </div>
-
-    <div id="caseModal" class="modal" style="display: none;">
-        <div id="modal-body" class="modal-content"></div>
-    </div>
-
-    <script src="scripts.js"></script>
+            if (passcode === correctPasscode) {
+                window.location.href = 'main.html';
+            } else {
+                alert('Incorrect passcode');
+            }
+        }
+    </script>
 </body>
 </html>
