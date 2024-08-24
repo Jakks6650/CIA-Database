@@ -3,31 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overseer Control</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>CIA Overseer</title>
+    <style>
+        /* Use the same styles as the main interface */
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .top-bar {
+            background-color: #222;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cia-logo {
+            width: 100px;
+        }
+        .menu-buttons button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .case-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+        .case-item {
+            background-color: #333;
+            padding: 15px;
+            margin: 10px;
+            width: 200px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <div id="overseer-login">
-        <img src="https://media.discordapp.net/attachments/1264789323102949469/1264790839423406110/IMG_5347.png?ex=66b24582&is=66b0f402&hm=b33ee0408642058416efcb5ed5e0d15a224e1089eef6d473cd2cc07b07bcca28&=&format=webp&quality=lossless&width=461&height=577" alt="CIA Logo" class="center-logo">
-        <input type="password" id="overseer-password" placeholder="Enter Overseer Password">
-        <button onclick="overseerLogin()">Login</button>
-    </div>
-
-    <div id="overseer-controls" style="display: none;">
-        <div id="top-bar">
-            <img src="https://media.discordapp.net/attachments/1264789323102949469/1264790839423406110/IMG_5347.png?ex=66b24582&is=66b0f402&hm=b33ee0408642058416efcb5ed5e0d15a224e1089eef6d473cd2cc07b07bcca28&=&format=webp&quality=lossless&width=461&height=577" alt="CIA Logo" class="logo">
-            <div class="button-group">
-                <button onclick="changeLoginCode()">Change Login Code</button>
-                <button onclick="addPersonnel()">Add Personnel</button>
-                <button onclick="removePersonnel()">Remove Personnel</button>
-                <button onclick="deleteCase()">Delete Case</button>
-            </div>
-        </div>
-        <div id="control-panel">
-            <!-- Content for Overseer controls -->
+    <div class="top-bar">
+        <img src="assets/cia-logo.png" alt="CIA Logo" class="cia-logo">
+        <div class="menu-buttons">
+            <button onclick="deleteLog()">Delete Log</button>
+            <button onclick="changePasscode()">Change Passcode</button>
         </div>
     </div>
 
-    <script src="scripts.js"></script>
+    <div class="case-list" id="caseList">
+        <!-- Case items will be generated here dynamically -->
+    </div>
+
+    <div id="popup" style="display:none;">
+        <div id="popup-content">
+            <!-- Popup content for delete log or change passcode will go here -->
+        </div>
+    </div>
+
+    <script>
+        function deleteLog() {
+            // Implement delete log functionality
+        }
+
+        function changePasscode() {
+            // Implement change passcode functionality
+        }
+    </script>
 </body>
 </html>
